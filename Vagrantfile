@@ -10,8 +10,10 @@ Vagrant.configure("2") do |config|
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
 
+  
   # Every Vagrant development environment requires a box. You can search for
-  config.vm.box = "DevOps-Course-Workshop-Module-04"
+  # config.vm.box = "Base"
+  config.vm.box = "ubuntu/trusty64"
   # boxes at https://vagrantcloud.com/search.
 
   # Disable automatic box update checking. If you disable this, then
