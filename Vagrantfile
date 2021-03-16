@@ -91,9 +91,25 @@ Vagrant.configure("2") do |config|
 
   curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
 
-
+  
 
   # TODO: Install pyenv prerequisites
   # TODO: Install pyenv
   SHELL
+
+  config.trigger.after :up do |trigger|
+    trigger.name = "Launching App"
+    trigger.info = "Running the TODO app setup script"
+    trigger.run_remote = {privileged: false, inline: "
+      # Install dependencies and launch
+      # <your script here>
+    
+      cd /vagrant
+      poetry install
+      poetry run flask run --host 0.0.0.0
+      
+
+    
+    "}
+  end
 end
