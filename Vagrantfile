@@ -108,8 +108,6 @@ Vagrant.configure("2") do |config|
       poetry install
       poetry run flask run --host 0.0.0.0
       
-
-    
     "}
   end
 end
