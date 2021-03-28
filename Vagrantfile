@@ -79,6 +79,14 @@ Vagrant.configure("2") do |config|
 
   #sudo python-build 3.3.2 /usr/local/
 
+  # List all the python versions
+  pyenv versions
+
+  # Make Python Run Faster
+  CFLAGS='-O2'
+
+  rm -rf ~/.pyenv/versions/3.8.5
+
   git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 
   echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
@@ -86,28 +94,29 @@ Vagrant.configure("2") do |config|
 
   echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bash_profile
   source ~/.bash_profile
+
   pyenv install 3.8.5
   pyenv global 3.8.5
 
   curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
 
   
-
+  
   # TODO: Install pyenv prerequisites
   # TODO: Install pyenv
   SHELL
 
-  config.trigger.after :up do |trigger|
-    trigger.name = "Launching App"
-    trigger.info = "Running the TODO app setup script"
-    trigger.run_remote = {privileged: false, inline: "
+#config.trigger.after :up do |trigger|
+#  trigger.name = "Launching App"
+#  trigger.info = "Running the TODO app setup script"
+#  trigger.run_remote = {privileged: false, inline: "
       # Install dependencies and launch
       # <your script here>
     
-      cd /vagrant
-      poetry install
-      poetry run flask run --host 0.0.0.0
+#     cd /vagrant
+#     poetry install
+#     poetry run flask run --host 0.0.0.0
       
-    "}
-  end
+#    "}
+#  end
 end
